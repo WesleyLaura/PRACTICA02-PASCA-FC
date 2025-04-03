@@ -1,0 +1,18 @@
+Pascal-FC post-mortem report on case3
+- Interpreter Version P5.3 - 
+Abnormal halt in main program  with pc = 79
+Reason:   label of -6 not found in case
+
+
+----------
+Main program
+
+Status:  active
+pc = 79
+
+
+
+==========
+Global variables
+
+numero     = -6
