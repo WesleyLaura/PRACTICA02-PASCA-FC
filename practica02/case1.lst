@@ -1,0 +1,69 @@
+- Pascal-FC for IBM PC compatibles - 
+- GNU Compiler Version P5.2
+
+G L Davies  &  A Burns, University of York
+
+Compiler listing
+
+    1     0 {*Escribir un programa que detecte el nombre introducido por el usuario.*}
+    2     0 program case1;
+    3     0 var 
+    4     0  nombre: array[1..30] of char;
+    5     0  i,j: integer;
+    6     0 begin
+    7     0  i:=1;
+    8     3  write('Ingrese su nombre: ');
+    9     5  repeat
+   10     5  i:=i+1;
+   11    10  read(nombre[i]);
+   12    14  until eoln;
+   13    16  write('Su nombr es ');
+   14    18  for j:=1 to i-1 do
+   15    24   write(nombre[j]);
+   16    30 end.
+
+
+
+Symbol table
+
+    name       link      objekt       type         ref      nrm  lev  adr  aux
+
+ 45 _main        44     procedure   notyp           2      True    0    0    0
+ 46 any           0     variable    synch           0      True    1    5    0
+ 47 nombre       46     variable    array           1      True    1    5    0
+ 48 i            47     variable    integer         0      True    1   35    0
+ 49 j            48     variable    integer         0      True    1   36    0
+
+Generated P-code
+
+    0     ldadr        1        35          ;6
+    1     ldcon.i      0         1          ;7
+    2     store.i      0         0          ;7
+    3     ldcon.i      0        19          ;8
+    4     wrstr        0         0          ;8
+    5     ldadr        1        35          ;9
+    6     ldval.i      1        35          ;10
+    7     ldcon.i      0         1          ;10
+    8     addop.i      0         0          ;10
+    9     store.i      0         0          ;10
+   10     ldadr        1         5          ;11
+   11     ldval.i      1        35          ;11
+   12     ixary.i      0         1          ;11
+   13     rdinp.c      0         0          ;11
+   14     stfun.b      0        18          ;12
+   15     jmpiz        0         5          ;12
+   16     ldcon.i      0        12          ;13
+   17     wrstr        0        19          ;13
+   18     ldadr        1        36          ;13
+   19     ldcon.i      0         1          ;14
+   20     ldval.i      1        35          ;14
+   21     ldcon.i      0         1          ;14
+   22     subop.i      0         0          ;14
+   23     for1u.i      0        30          ;14
+   24     ldadr        1         5          ;15
+   25     ldval.i      1        36          ;15
+   26     ixary.i      0         1          ;15
+   27     rpadr.c      0         0          ;15
+   28     wrval.c      0         0          ;15
+   29     for2u.i      0        24          ;15
+   30     stopx        0         0          ;15
