@@ -1,0 +1,15 @@
+{*Escribir un programa que detecte el nombre introducido por el usuario.*}
+program case1;
+var nombre: array[1..10] of char;
+	i,j: integer;
+begin
+i:=1;
+	write('Ingrese su nomre: ');
+	repeat
+	i:=+1;
+	read(nombre[i]);
+	until eoln;
+	write('Hola ');
+	for j:=1 to i do
+		write(nombre[j]);
+end.

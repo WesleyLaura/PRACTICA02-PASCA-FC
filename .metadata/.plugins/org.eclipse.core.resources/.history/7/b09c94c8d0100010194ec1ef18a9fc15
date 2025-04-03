@@ -1,0 +1,17 @@
+{*Escribir un programa que determine si un número leído desde el teclado es múltiplo de 5.
+*}
+program case2;
+var 
+	num: integer;
+	
+begin
+	write('Ingrese el numero: ');
+	read(num);
+if num mod 5 =0 then
+	begin
+		write('SI ES MULTIPLO');
+	end
+else
+
+
+end.

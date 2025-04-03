@@ -1,0 +1,333 @@
+- Pascal-FC for IBM PC compatibles - 
+- GNU Compiler Version P5.2
+
+G L Davies  &  A Burns, University of York
+
+Compiler listing
+
+    1     0 program caso10;
+    2     0 var
+    3     0  password: array[1..20] of char;
+    4     0  aux: array[1..6] of char; {Cadena auxiliar para la clave predeterminada}
+    5     0  monto, dinero: real;
+    6     0  i,j,op: integer;
+    7     0  continuar: char;
+    8     0  cen: boolean;
+    9     0 begin
+   10     0  aux[1]:='a'; aux[2]:='d'; aux[3]:='m'; aux[4]:='i'; aux[5]:='n'; aux[6]:='w';
+   11    30  monto:=1000;
+   12    34 
+   13    34  writeln('Cajero Automatico');
+   14    37  write('Ingrese su contrasenia: '); {la contrasenia es: adminw}
+   15    39  
+   16    39  j:=0;
+   17    42  repeat
+   18    42   j:=j+1;
+   19    47   read(password[j]); 
+   20    51  until eoln; {eoln devuelve booleano al teclear enter}
+   21    53  writeln(j);
+   22    56  i:=1;
+   23    59  cen:=true;
+   24    62  while (i<=6) and (cen=true) do
+   25    70   begin
+   26    70    if (password[i]<>aux[i]) then
+   27    80     cen:=false;
+   28    83     i:=i+1;
+   29    88   end;
+   30    89  
+   31    89  { j-1: tamanio de la cadena de caracteres ingresada por el usuario }
+   32    89  if (cen=true) and (j-1=6) then
+   33    99   begin
+   34    99    writeln('Inicio correcto');
+   35   102    readln; {limpiar bufer}
+   36   103    repeat
+   37   103     writeln('MENU DE OPCIONES');
+   38   106     writeln('1. Retirar dinero');
+   39   109     writeln('2. Depositar dinero');
+   40   112     writeln('3. Transferir dinero');
+   41   115     writeln('4. Ver saldo');
+   42   118     write('Ingrese una opcion: ');
+   43   120  
+   44   120     readln(op);
+   45   123     if (op>=1) and (op<=4) then
+   46   131      case op of
+   47   133       1:
+   48   133        begin
+   49   133         write('Ingrese el monto a retirar: ');
+   50   135         readln(dinero);
+   51   138         monto:=monto-dinero;
+   52   143         writeln('Dinero retirado');
+   53   146        end;
+   54   147       2:
+   55   147        begin
+   56   147         write('Ingrese el monto a depositar: ');
+   57   149         readln(dinero);
+   58   152         monto:=monto+dinero;
+   59   157         writeln('Dinero depositado');
+   60   160 
+   61   160        end;
+   62   161       3:
+   63   161        begin
+   64   161         write('Ingrese el monto a transferir: ');
+   65   163         readln(dinero);
+   66   166         monto:=monto-dinero;
+   67   171         writeln('Dinero transferido');
+   68   174        end;
+   69   175       4:
+   70   175        begin
+   71   175         writeln('El saldo disponible es ',monto:0:2);
+   72   182        end;
+   73   183       
+   74   183      end
+   75   192     else
+   76   192      writeln('Ingrese una opcion valida');
+   77   196     
+   78   196     write('Desea continuar? (S/N): ');
+   79   198     readln(continuar);
+   80   201     
+   81   201    until (continuar='N') or (continuar='n');
+   82   209    writeln('Programa finalizado pulse cualquier tecla');
+   83   212   end
+   84   212  else
+   85   212   writeln('Incorrecto');
+   86   216  readln
+   87   216 end.
+
+
+
+Symbol table
+
+    name       link      objekt       type         ref      nrm  lev  adr  aux
+
+ 45 _main        44     procedure   notyp           2      True    0    0    0
+ 46 any           0     variable    synch           0      True    1    5    0
+ 47 password     46     variable    array           1      True    1    5    0
+ 48 aux          47     variable    array           2      True    1   25    0
+ 49 monto        48     variable    real            0      True    1   31    0
+ 50 dinero       49     variable    real            0      True    1   32    0
+ 51 i            50     variable    integer         0      True    1   33    0
+ 52 j            51     variable    integer         0      True    1   34    0
+ 53 op           52     variable    integer         0      True    1   35    0
+ 54 continuar    53     variable    char            0      True    1   36    0
+ 55 cen          54     variable    boolean         0      True    1   37    0
+
+Generated P-code
+
+    0     ldadr        1        25          ;9
+    1     ldcon.i      0         1          ;10
+    2     ixary.i      0         2          ;10
+    3     ldcon.c      0        97          ;10
+    4     store.c      0         0          ;10
+    5     ldadr        1        25          ;10
+    6     ldcon.i      0         2          ;10
+    7     ixary.i      0         2          ;10
+    8     ldcon.c      0       100          ;10
+    9     store.c      0         0          ;10
+   10     ldadr        1        25          ;10
+   11     ldcon.i      0         3          ;10
+   12     ixary.i      0         2          ;10
+   13     ldcon.c      0       109          ;10
+   14     store.c      0         0          ;10
+   15     ldadr        1        25          ;10
+   16     ldcon.i      0         4          ;10
+   17     ixary.i      0         2          ;10
+   18     ldcon.c      0       105          ;10
+   19     store.c      0         0          ;10
+   20     ldadr        1        25          ;10
+   21     ldcon.i      0         5          ;10
+   22     ixary.i      0         2          ;10
+   23     ldcon.c      0       110          ;10
+   24     store.c      0         0          ;10
+   25     ldadr        1        25          ;10
+   26     ldcon.i      0         6          ;10
+   27     ixary.i      0         2          ;10
+   28     ldcon.c      0       119          ;10
+   29     store.c      0         0          ;10
+   30     ldadr        1        31          ;10
+   31     ldcon.i      0      1000          ;11
+   32     float        0         0          ;11
+   33     store.r      0         0          ;11
+   34     ldcon.i      0        17          ;13
+   35     wrstr        0         0          ;13
+   36     wrlin        0         0          ;13
+   37     ldcon.i      0        24          ;14
+   38     wrstr        0        17          ;14
+   39     ldadr        1        34          ;14
+   40     ldcon.i      0         0          ;16
+   41     store.i      0         0          ;16
+   42     ldadr        1        34          ;17
+   43     ldval.i      1        34          ;18
+   44     ldcon.i      0         1          ;18
+   45     addop.i      0         0          ;18
+   46     store.i      0         0          ;18
+   47     ldadr        1         5          ;19
+   48     ldval.i      1        34          ;19
+   49     ixary.i      0         1          ;19
+   50     rdinp.c      0         0          ;19
+   51     stfun.b      0        18          ;20
+   52     jmpiz        0        42          ;20
+   53     ldval.i      1        34          ;21
+   54     wrval.i      0         0          ;21
+   55     wrlin        0         0          ;21
+   56     ldadr        1        33          ;21
+   57     ldcon.i      0         1          ;22
+   58     store.i      0         0          ;22
+   59     ldadr        1        37          ;22
+   60     ldcon.b      0         1          ;23
+   61     store.b      0         0          ;23
+   62     ldval.i      1        33          ;24
+   63     ldcon.i      0         6          ;24
+   64     relle.i      0         0          ;24
+   65     ldval.b      1        37          ;24
+   66     ldcon.b      0         1          ;24
+   67     releq.b      0         0          ;24
+   68     andop.b      0         0          ;24
+   69     jmpiz        0        89          ;24
+   70     ldadr        1         5          ;26
+   71     ldval.i      1        33          ;26
+   72     ixary.i      0         1          ;26
+   73     rpadr.c      0         0          ;26
+   74     ldadr        1        25          ;26
+   75     ldval.i      1        33          ;26
+   76     ixary.i      0         2          ;26
+   77     rpadr.c      0         0          ;26
+   78     relne.c      0         0          ;26
+   79     jmpiz        0        83          ;26
+   80     ldadr        1        37          ;26
+   81     ldcon.b      0         0          ;27
+   82     store.b      0         0          ;27
+   83     ldadr        1        33          ;27
+   84     ldval.i      1        33          ;28
+   85     ldcon.i      0         1          ;28
+   86     addop.i      0         0          ;28
+   87     store.i      0         0          ;28
+   88     jmpuc        0        62          ;28
+   89     ldval.b      1        37          ;32
+   90     ldcon.b      0         1          ;32
+   91     releq.b      0         0          ;32
+   92     ldval.i      1        34          ;32
+   93     ldcon.i      0         1          ;32
+   94     subop.i      0         0          ;32
+   95     ldcon.i      0         6          ;32
+   96     releq.i      0         0          ;32
+   97     andop.b      0         0          ;32
+   98     jmpiz        0       213          ;32
+   99     ldcon.i      0        15          ;34
+  100     wrstr        0        41          ;34
+  101     wrlin        0         0          ;34
+  102     rdlin        0         0          ;34
+  103     ldcon.i      0        16          ;37
+  104     wrstr        0        56          ;37
+  105     wrlin        0         0          ;37
+  106     ldcon.i      0        17          ;38
+  107     wrstr        0        72          ;38
+  108     wrlin        0         0          ;38
+  109     ldcon.i      0        19          ;39
+  110     wrstr        0        89          ;39
+  111     wrlin        0         0          ;39
+  112     ldcon.i      0        20          ;40
+  113     wrstr        0       108          ;40
+  114     wrlin        0         0          ;40
+  115     ldcon.i      0        12          ;41
+  116     wrstr        0       128          ;41
+  117     wrlin        0         0          ;41
+  118     ldcon.i      0        20          ;42
+  119     wrstr        0       140          ;42
+  120     ldadr        1        35          ;44
+  121     rdinp.i      0         0          ;44
+  122     rdlin        0         0          ;44
+  123     ldval.i      1        35          ;45
+  124     ldcon.i      0         1          ;45
+  125     relge.i      0         0          ;45
+  126     ldval.i      1        35          ;45
+  127     ldcon.i      0         4          ;45
+  128     relle.i      0         0          ;45
+  129     andop.b      0         0          ;45
+  130     jmpiz        0       193          ;45
+  131     ldval.i      1        35          ;46
+  132     jmpuc        0       183          ;46
+  133     ldcon.i      0        28          ;49
+  134     wrstr        0       160          ;49
+  135     ldadr        1        32          ;50
+  136     rdinp.r      0         0          ;50
+  137     rdlin        0         0          ;50
+  138     ldadr        1        31          ;50
+  139     ldval.r      1        31          ;51
+  140     ldval.r      1        32          ;51
+  141     subop.r      0         0          ;51
+  142     store.r      0         0          ;51
+  143     ldcon.i      0        15          ;52
+  144     wrstr        0       188          ;52
+  145     wrlin        0         0          ;52
+  146     jmpuc        0       192          ;52
+  147     ldcon.i      0        30          ;56
+  148     wrstr        0       203          ;56
+  149     ldadr        1        32          ;57
+  150     rdinp.r      0         0          ;57
+  151     rdlin        0         0          ;57
+  152     ldadr        1        31          ;57
+  153     ldval.r      1        31          ;58
+  154     ldval.r      1        32          ;58
+  155     addop.r      0         0          ;58
+  156     store.r      0         0          ;58
+  157     ldcon.i      0        17          ;59
+  158     wrstr        0       233          ;59
+  159     wrlin        0         0          ;59
+  160     jmpuc        0       192          ;59
+  161     ldcon.i      0        31          ;64
+  162     wrstr        0       250          ;64
+  163     ldadr        1        32          ;65
+  164     rdinp.r      0         0          ;65
+  165     rdlin        0         0          ;65
+  166     ldadr        1        31          ;65
+  167     ldval.r      1        31          ;66
+  168     ldval.r      1        32          ;66
+  169     subop.r      0         0          ;66
+  170     store.r      0         0          ;66
+  171     ldcon.i      0        18          ;67
+  172     wrstr        0       281          ;67
+  173     wrlin        0         0          ;67
+  174     jmpuc        0       192          ;67
+  175     ldcon.i      0        23          ;71
+  176     wrstr        0       299          ;71
+  177     ldval.r      1        31          ;71
+  178     ldcon.i      0         0          ;71
+  179     ldcon.i      0         2          ;71
+  180     w2frm        0         0          ;71
+  181     wrlin        0         0          ;71
+  182     jmpuc        0       192          ;71
+  183     ldcon.i      0         1          ;72
+  184     case1.i      0       133          ;72
+  185     ldcon.i      0         2          ;72
+  186     case1.i      0       147          ;72
+  187     ldcon.i      0         3          ;72
+  188     case1.i      0       161          ;72
+  189     ldcon.i      0         4          ;72
+  190     case1.i      0       175          ;72
+  191     case2        0         0          ;72
+  192     jmpuc        0       196          ;74
+  193     ldcon.i      0        25          ;76
+  194     wrstr        0       322          ;76
+  195     wrlin        0         0          ;76
+  196     ldcon.i      0        24          ;78
+  197     wrstr        0       347          ;78
+  198     ldadr        1        36          ;79
+  199     rdinp.c      0         0          ;79
+  200     rdlin        0         0          ;79
+  201     ldval.c      1        36          ;81
+  202     ldcon.c      0        78          ;81
+  203     releq.c      0         0          ;81
+  204     ldval.c      1        36          ;81
+  205     ldcon.c      0       110          ;81
+  206     releq.c      0         0          ;81
+  207     iorop.b      0         0          ;81
+  208     jmpiz        0       103          ;81
+  209     ldcon.i      0        41          ;82
+  210     wrstr        0       371          ;82
+  211     wrlin        0         0          ;82
+  212     jmpuc        0       216          ;83
+  213     ldcon.i      0        10          ;85
+  214     wrstr        0       412          ;85
+  215     wrlin        0         0          ;85
+  216     rdlin        0         0          ;85
+  217     stopx        0         0          ;86

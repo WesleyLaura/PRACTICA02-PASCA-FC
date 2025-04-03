@@ -1,0 +1,10 @@
+program caso7;
+var
+	hora,minuto,segundo,resultado: integer;
+begin
+	write('Ingrese la hora (HH MM SS): ');
+	readln(hora,minuto,segundo);
+	resultado:= hora*3600 + minuto*60 + segundo;
+	write('La hora en segundos es: ',resultado);
+	readln;
+end.

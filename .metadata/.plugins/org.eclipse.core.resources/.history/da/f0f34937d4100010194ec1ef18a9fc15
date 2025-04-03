@@ -1,0 +1,87 @@
+program caso10;
+var
+	password: array[1..20] of char;
+	aux: array[1..6] of char; {Cadena auxiliar para la clave predeterminada}
+	monto, dinero: real;
+	i,j,op: integer;
+	continuar: char;
+	cen: boolean;
+begin
+	aux[1]:='a'; aux[2]:='d'; aux[3]:='m'; aux[4]:='i'; aux[5]:='n'; aux[6]:='1';
+	monto:=1000;
+
+	writeln('Cajero Automatico');
+	write('Ingrese su contrasenia: '); {la contrasenia es: adminWesley}
+	
+	j:=0;
+	repeat
+		j:=j+1;
+		read(password[j]);	
+	until eoln; {eoln devuelve booleano al teclear enter}
+	writeln(j);
+	i:=1;
+	cen:=true;
+	while (i<=6) and (cen=true) do
+		begin
+			if (password[i]<>aux[i]) then
+				cen:=false;
+				i:=i+1;
+		end;
+	
+	{ j-1: tamanio de la cadena de caracteres ingresada por el usuario }
+	if (cen=true) and (j-1=6) then
+		begin
+			writeln('Inicio correcto');
+			readln; {limpiar bufer}
+			repeat
+				writeln('MENU DE OPCIONES');
+				writeln('1. Retirar dinero');
+				writeln('2. Depositar dinero');
+				writeln('3. Transferir dinero');
+				writeln('4. Ver saldo');
+				write('Ingrese una opcion: ');
+	
+				readln(op);
+				if (op>=1) and (op<=4) then
+					case op of
+						1:
+							begin
+								write('Ingrese el monto a retirar: ');
+								readln(dinero);
+								monto:=monto-dinero;
+								writeln('Dinero retirado');
+							end;
+						2:
+							begin
+								write('Ingrese el monto a depositar: ');
+								readln(dinero);
+								monto:=monto+dinero;
+								writeln('Dinero depositado');
+
+							end;
+						3:
+							begin
+								write('Ingrese el monto a transferir: ');
+								readln(dinero);
+								monto:=monto-dinero;
+								writeln('Dinero transferido');
+							end;
+						4:
+							begin
+								writeln('El saldo disponible es ',monto:0:2);
+							end;
+						
+					end
+				else
+					writeln('Ingrese una opcion valida');
+				
+				write('Desea continuar? (S/N): ');
+				readln(continuar);
+				
+			until (continuar='N') or (continuar='n');
+			writeln('Programa finalizado pulse cualquier tecla');
+		end
+	else
+		writeln('Incorrecto');
+	readln
+end.

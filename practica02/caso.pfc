@@ -1,0 +1,12 @@
+program caso;
+var
+	i,m: integer;
+begin
+	i:=1;
+	m:=7;
+	repeat
+		write(m,' ');
+		i:=i+1;
+		m:=7*i;
+	until (m>100);
+end.
